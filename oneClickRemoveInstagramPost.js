@@ -92,29 +92,19 @@
         '_': '_',
     };
 
-    console.log('oneClickDeleteInstagramPost init');
     setTimeout(pending, 2000);
 
     function pending() {
-        //console.log('oneClickDeleteInstagramPost：pending');
-
         let article = document.getElementsByTagName('article');
 
         if (!article.length || !article[0].children[0].childElementCount || !article[0].children[0].children[0].childElementCount) {
             setTimeout(pending, 2000);
         } else {
-            if (true || lines < article[0].children[0].children[0].childElementCount) {
-                //lines = article[0].children[0].children[0].childElementCount;
-                getPost();
-            } else {
-                setTimeout(pending, 2000);
-            }
+            getPost();
         }
     }
 
     function getPost() {
-        //console.log('oneClickDeleteInstagramPost：getPost');
-
         let articles = document.getElementsByTagName('article')[0].children[0].children[0];
 
         for (let articlesline of articles.children) {
@@ -172,7 +162,6 @@
         if (result) {
             return result[1];
         } else {
-            console.log('oneClickDeleteInstagramPost：content url mismatch');
             return false;
         }
     }
@@ -194,7 +183,6 @@
         btn.style.backgroundColor  = 'yellow';
         btn.onclick = false;
         btn.disabled = true;
-        console.log('oneClickDeleteInstagramPost：going to delete:' + media_id);
 
         let url = 'https://www.instagram.com/create/' + media_id + '/delete/';
 
@@ -205,20 +193,16 @@
         xmlhttp.send(null);
 
         xmlhttp.onreadystatechange = function() {
-            console.log(xmlhttp);
             if (xmlhttp.readyState == 4) {
                 if (xmlhttp.status == 200) {
                     let rst = JSON.parse(xmlhttp.response);
                     if (rst.did_delete) {
-                        console.log('oneClickDeleteInstagramPost：Deleted');
                         post.style.visibility = 'hidden';
                     } else {
                         btn.innerHTML = 'Failed';
-                        console.log('oneClickDeleteInstagramPost Delete Failed');
                     }
                 } else {
                     btn.innerHTML = 'Failed';
-                    console.log('oneClickDeleteInstagramPost：Delete Failed');
                 }
             }
         };
