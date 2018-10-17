@@ -16,7 +16,7 @@ For question, please read **Known issues**.
 
 ## Feedback
 
-Pull request is welcome.
+Pull request is welcome. Please send pull reqest to dev branch.
 
 ## Security
 
