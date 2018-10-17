@@ -18,7 +18,7 @@ Chrome 用户可以选择安装 暴力猴 [谷歌商店链接](https://chrome.go
 
 关于使用的反馈，可以发送到 greasyfork 对应项目页、GitHub 项目。
 
-欢迎对项目进行 Pull Request。
+欢迎对项目进行 Pull Request。请将 Pull Request 发到 dev 分支。
 
 ## 安全性
 
