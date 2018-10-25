@@ -35,7 +35,7 @@ This project is not responsible for any data lost.
 ## Known issues
 
 - You need to reflesh the page in your personal page in order to active this script.
-- Some personal page may have visual issues. I don't know how to get it or fix it yet.
+- ~~Some personal page may have visual issues. I don't know how to get it or fix it yet.~~ (Fixed in 1.0.1)
 - The description of video post can't get shown.
 - After you delete a post, if you scroll the page far enough and scroll back, the deleted post will be back on your page, but it will be unaccessable.
 - Even if you enter a personal page which doesn't belong to you, the delete button and description are still shown, of course the delete function won't be functional.

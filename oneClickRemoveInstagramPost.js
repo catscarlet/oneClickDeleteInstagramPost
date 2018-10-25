@@ -144,7 +144,7 @@
                 post.appendChild(btn_div);
 
                 let alt_div = document.createElement('div');
-                alt_div.innerHTML = alt;
+                alt_div.innerHTML = '<span style="word-break: break-word;">' + alt + '</span>';
                 post.appendChild(alt_div);
 
                 link.setAttribute('alte', 1);
