@@ -1,6 +1,6 @@
 # oneClickDeleteInstagramPost 一键删除Instagram帖子
 
-这是一个用于快速删除 Instagram 帖子的 userscript。
+这是一个用于快速删除 Instagram 帖子的 用户脚本。
 
 用户可以在 PC 端的个人页面直接删除自己的 Post，并且没有 Yes/No 的确认提示框。可以非常快速且直接了当的进行删除。
 
@@ -8,7 +8,11 @@
 
 安装和软件截图：[oneClickDeleteInstagramPost On Greasy Fork](https://greasyfork.org/zh-CN/scripts/373339-oneclickdeleteinstagrampost)
 
-Chrome 用户可以选择安装 暴力猴 [谷歌商店链接](https://chrome.google.com/webstore/detail/violentmonkey/jinjaccalgkegednnccohejagnlnfdag)，[GitHub链接](https://github.com/violentmonkey/violentmonkey/releases/latest)， 或其他同类扩展程序。用户脚本管理器的安装等相关资料均可参见 Greasy Fork。
+用户需先安装用户脚本管理器，推荐
+
+- 暴力猴：[chrome 网上应用店](https://chrome.google.com/webstore/detail/violentmonkey/jinjaccalgkegednnccohejagnlnfdag)，[火狐附加组件](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/)，[GitHub](https://github.com/violentmonkey/violentmonkey/releases/latest)
+
+或其他同类扩展程序。用户脚本管理器的安装等相关资料均可参见 [Greasy Fork](https://greasyfork.org/)。
 
 新安装用户是无法使用删除功能的，必须将脚本中的 `safe_lock;` 修改为 `0` 方能进行删除。这个项目原本只是为特殊目的而制作并使用的，并不建议一直开启。但是由于脚本同时可显示每个 Post 的注释，所以可能会有用户在日常也开启这个功能，所以设置了一个安全锁，当用户不需要删除功能时，可以将删除按钮锁定，以避免误点击造成数据丢失。
 
@@ -37,7 +41,7 @@ Chrome 用户可以选择安装 暴力猴 [谷歌商店链接](https://chrome.go
 ## 已知问题
 
 - 需要刷新个人首页才能启动脚本
-- 部分用户的首页会变形，触发条件不详
+- ~~部分用户的首页会变形，触发条件不详~~ (Fixed in 1.0.1)
 - 视频的介绍读不到
 - 删除内容后，如果用户滚动页面超过一定行数之后再滚动回来，被删除的内容还会出现在列表中，但是内容已删除，无法正常访问。
 - 即使进入其他用户的主页，也能看到删除按钮
