@@ -8,7 +8,7 @@
 // @description:en      Add a [Delete] button to the Personal Page on Instagram. Directly delete post without confirm.
 // @description:ja      Instagramの個人ページの投稿に[削除]ボタンを追加してください。 確認なしで投稿を直接削除します。
 // @description:zh      在 Instagram 的个人页面的图片上添加 [Delete] 按钮，点击直接图片，不再有确认提示框
-// @version             1.0.0
+// @version             1.0.1
 // @author              catscarlet
 // @match               *://www.instagram.com/*/
 // @require             https://cdn.jsdelivr.net/npm/bignumber.js@2.4.0/bignumber.min.js
