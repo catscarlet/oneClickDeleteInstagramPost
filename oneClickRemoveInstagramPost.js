@@ -90,16 +90,31 @@
         '_': '_',
     };
 
-    setTimeout(pending, 2000);
+    let article = document.getElementsByTagName('article');
+
+    pending();
 
     function pending() {
-        let article = document.getElementsByTagName('article');
-
         if (!article.length || !article[0].children[0].childElementCount || !article[0].children[0].children[0].childElementCount) {
-            setTimeout(pending, 2000);
+            setTimeout(pending, 500);
         } else {
+            ob();
             getPost();
         }
+    }
+
+    function ob() {
+        let articles = document.getElementsByTagName('article')[0].children[0].children[0];
+
+        let observerOptions = {
+            childList: true,
+            attributes: true,
+            subtree: true,
+        };
+
+        let observer = new MutationObserver(getPost);
+
+        observer.observe(articles, observerOptions);
     }
 
     function getPost() {
@@ -150,8 +165,6 @@
                 link.setAttribute('alte', 1);
             }
         }
-
-        setTimeout(pending, 2000);
     };
 
     function GetUrlSegmentByUrl(url) {
