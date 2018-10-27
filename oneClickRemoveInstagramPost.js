@@ -2,17 +2,18 @@
 // @name                oneClickDeleteInstagramPost
 // @name:en             oneClickDeleteInstagramPost
 // @name:ja             oneClickDeleteInstagramPost
-// @name:zh             oneClickDeleteInstagramPost 一键删除Instagram帖子
+// @name:zh-CN          oneClickDeleteInstagramPost 一键删除 Instagram 帖子
+// @name:zh-TW          oneClickDeleteInstagramPost 一鍵刪除 Instagram 帖子
 // @namespace           https://github.com/catscarlet/oneClickDeleteInstagramPost
 // @description         Add [Delete] button on the post in Personal Page on Instagram. Directly delete post without confirm.
 // @description:en      Add a [Delete] button to the Personal Page on Instagram. Directly delete post without confirm.
 // @description:ja      Instagramの個人ページの投稿に[削除]ボタンを追加してください。 確認なしで投稿を直接削除します。
-// @description:zh      在 Instagram 的个人页面的图片上添加 [Delete] 按钮，点击直接图片，不再有确认提示框
-// @version             1.0.1
+// @description:zh-CN   在 Instagram 的个人页面的图片上添加 [Delete] 按钮，点击直接删除图片，不再有确认提示框
+// @description:zh-TW   在 Instagram 的個人頁面的圖片上添加 [Delete] 按鈕，點擊直接刪除图片，不再有確認提示框
+// @version             1.0.2
 // @author              catscarlet
 // @match               *://www.instagram.com/*/
 // @require             https://cdn.jsdelivr.net/npm/bignumber.js@2.4.0/bignumber.min.js
-// @compatible          chrome  支持
 // @run-at              document-end
 // @grant               none
 // ==/UserScript==
@@ -22,7 +23,6 @@
 
     let safe_lock = 1;
 
-    let lines = 0;
     let rmap = {
         '0': 'Q',
         '1': 'R',
@@ -90,16 +90,31 @@
         '_': '_',
     };
 
-    setTimeout(pending, 2000);
+    let article = document.getElementsByTagName('article');
+
+    pending();
 
     function pending() {
-        let article = document.getElementsByTagName('article');
-
         if (!article.length || !article[0].children[0].childElementCount || !article[0].children[0].children[0].childElementCount) {
-            setTimeout(pending, 2000);
+            setTimeout(pending, 500);
         } else {
+            ob();
             getPost();
         }
+    }
+
+    function ob() {
+        let articles = document.getElementsByTagName('article')[0].children[0].children[0];
+
+        let observerOptions = {
+            childList: true,
+            attributes: true,
+            subtree: true,
+        };
+
+        let observer = new MutationObserver(getPost);
+
+        observer.observe(articles, observerOptions);
     }
 
     function getPost() {
@@ -150,8 +165,6 @@
                 link.setAttribute('alte', 1);
             }
         }
-
-        setTimeout(pending, 2000);
     };
 
     function GetUrlSegmentByUrl(url) {
