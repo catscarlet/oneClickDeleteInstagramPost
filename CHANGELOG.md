@@ -1,3 +1,9 @@
+## 1.0.2
+
+- Use MutationObserver instead of polling(aka function setTimeout).
+
+Today I'm trying to make a new project called oneClickDeleteTwitterTweet (Yep imma going to delete everything). I'm tired of using polling(aka function setTimeout), cuz it may cause a terrible memory leak, and polling for monitoring is stupid. I found a lot , such as `bind`(require jQuery), `Mutation events`(Deprecated), `addEventListener`(sounds decent), and `MutationObserver`. Most pages recommend `MutationObserver` and it looks cool. So I decide to use it. It's weired that my userscript doesn't work on twitter and I don't know why. To ensure I'm using MutationObserver in a right way, I add it to this project, and it works very well. Now we have a better performance and less memory usage.
+
 ## 1.0.1
 
 - Fix a visual issue.
