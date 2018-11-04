@@ -1,3 +1,7 @@
+## 1.0.3
+
+- Update the GetUrlSegmentByUrl regexp.
+
 ## 1.0.2
 
 - Use MutationObserver instead of polling(aka function setTimeout).
