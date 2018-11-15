@@ -21,7 +21,7 @@
 (function() {
     'use strict';
 
-    let safe_lock = 1;
+    let safe_lock = 1; //Set this to 0 to unlock the 'Delete this' button.
 
     let rmap = {
         '0': 'Q',
