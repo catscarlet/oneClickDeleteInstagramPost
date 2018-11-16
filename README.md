@@ -12,7 +12,7 @@ Users must install a user script manager first. Here is my recommend:
 
 - Violentmonkey: [Chrome Web Store](https://chrome.google.com/webstore/detail/violentmonkey/jinjaccalgkegednnccohejagnlnfdag), [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/), [GitHub](https://github.com/violentmonkey/violentmonkey/releases/latest)
 
-, or try any other user script managers as you wish. You can find a lot information about user script on Greasy Fork.
+Or try any other user script managers as you wish. You can find a lot information about user script on Greasy Fork.
 
 New user can't use the 'delete' function, unless you set `safe_lock;` to `0` in the script. This project is just for some special propose and shouldn't enable all time, but this project also has a feature about show description on personal page, cause some users may enable it even they don't need the 'delete' function. I made a safe_lock in order to protect data in case of misclick.
 
