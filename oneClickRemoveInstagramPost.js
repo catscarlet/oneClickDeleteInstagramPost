@@ -12,7 +12,7 @@
 // @description:zh-TW   在 Instagram 的個人頁面的圖片上添加 [Delete] 按鈕，點擊直接刪除图片，不再有確認提示框
 // @version             1.0.3
 // @author              catscarlet
-// @match               *://www.instagram.com/*/
+// @match               *://www.instagram.com/*
 // @require             https://cdn.jsdelivr.net/npm/bignumber.js@2.4.0/bignumber.min.js
 // @run-at              document-end
 // @grant               none
@@ -91,8 +91,47 @@
     };
 
     let article = document.getElementsByTagName('article');
+    let old_path = '';
+    let new_path = '';
 
-    pending();
+    historyPushStateMonitor(window.history);
+    historyOnpushstate();
+
+    history.onpushstate = function(e) {
+        goPendingUrl();
+    };
+
+    function historyPushStateMonitor(history) {
+        let pushState = history.pushState;
+        history.pushState = function(state) {
+            old_path = location.pathname.toString();
+
+            if (typeof history.onpushstate == 'function') {
+                history.onpushstate({state: state});
+            }
+
+            return pushState.apply(history, arguments);
+        };
+    }
+
+    function goPendingUrl() {
+        new_path = location.pathname.toString();
+
+        if (old_path == new_path) {
+            setTimeout(goPendingUrl, 1000);
+        } else {
+            historyOnpushstate();
+        }
+    }
+
+    function historyOnpushstate() {
+        let match_regex = /https:\/\/www.instagram.com\/([^\/]+)\/$/;
+        let href = location.href;
+        let array1;
+        if ((array1 = match_regex.exec(href)) !== null) {
+            pending();
+        }
+    }
 
     function pending() {
         if (!article.length || !article[0].children[0].childElementCount || !article[0].children[0].children[0].childElementCount) {
