@@ -101,6 +101,10 @@
         goPendingUrl();
     };
 
+    window.onpopstate = function(event) {
+        goPendingUrl();
+    };
+
     function historyPushStateMonitor(history) {
         let pushState = history.pushState;
         history.pushState = function(state) {
