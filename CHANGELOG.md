@@ -1,3 +1,11 @@
+## 1.0.4
+
+- No need to reflesh the page in your personal page.
+
+Well I'm tired to this issue too.
+
+I use a trick to get a trigger of history.pushState. It is hard because I can only get this trigger before the push, and I can't get the new path. Sadly I have to use setTimeout and compare old_path and new_path to check if the push is over. Luckily it looks working fine.
+
 ## 1.0.3
 
 - Update the GetUrlSegmentByUrl regexp.
