@@ -131,8 +131,14 @@
     function historyOnpushstate() {
         let match_regex = /https:\/\/www.instagram.com\/([^\/]+)\/$/;
         let href = location.href;
-        let array1;
-        if ((array1 = match_regex.exec(href)) !== null) {
+
+
+        let array1 = match_regex.exec(href);
+        if (array1 !== null) {
+            if (array1[1] == 'explore') {
+
+                return false;
+            }
             pending();
         }
     }
@@ -141,6 +147,10 @@
         if (!article.length || !article[0].children[0].childElementCount || !article[0].children[0].children[0].childElementCount) {
             setTimeout(pending, 500);
         } else {
+            if (document.getElementsByClassName('fx7hk')[0].childElementCount == 2) {
+
+                return false;
+            }
             ob();
             getPost();
         }
