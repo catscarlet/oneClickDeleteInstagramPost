@@ -22,6 +22,7 @@
     'use strict';
 
     let safe_lock = 1; //Set this to 0 to unlock the 'Delete this' button.
+    let show_alt = 0; //Hide alt by default. Set this to 1 to show alt of images.
 
     let rmap = {
         '0': 'Q',
@@ -93,6 +94,7 @@
     let article = document.getElementsByTagName('article');
     let old_path = '';
     let new_path = '';
+    let temp_lock = 0;
 
     historyPushStateMonitor(window.history);
     historyOnpushstate();
@@ -137,8 +139,11 @@
         if (array1 !== null) {
             if (array1[1] == 'explore') {
 
-                return false;
+                temp_lock = 1;
+            } else {
+                temp_lock = 0;
             }
+
             pending();
         }
     }
@@ -147,9 +152,10 @@
         if (!article.length || !article[0].children[0].childElementCount || !article[0].children[0].children[0].childElementCount) {
             setTimeout(pending, 500);
         } else {
-            if (document.getElementsByClassName('fx7hk')[0].childElementCount == 2) {
-
-                return false;
+            if (document.getElementsByClassName('fx7hk').length && document.getElementsByClassName('fx7hk')[0].childElementCount == 2) {
+                temp_lock = 1;
+            } else {
+                temp_lock = 0;
             }
             ob();
             getPost();
@@ -203,16 +209,24 @@
                     deleteByMediaId(media_id, btn, post);
                 };
 
-                if (safe_lock) {
+                if (temp_lock) {
+                    //Skip btn append.
+                } else if (safe_lock) {
                     btn.disabled = true;
                     btn.title = 'Safe_lock is ON! You need to edit the script and change the "safe_lock" to 0 in order to delete your post without confirm.';
+                    btn_div.appendChild(btn);
+                    post.appendChild(btn_div);
+                } else {
+                    btn_div.appendChild(btn);
+                    post.appendChild(btn_div);
                 }
 
-                btn_div.appendChild(btn);
-                post.appendChild(btn_div);
-
                 let alt_div = document.createElement('div');
-                alt_div.innerHTML = '<span style="word-break: break-word;">' + alt + '</span>';
+                let alt_div_style = 'word-break: break-word;';
+                if (!show_alt) {
+                    alt_div_style += 'display: none;';
+                }
+                alt_div.innerHTML = '<span style="' + alt_div_style + '">' + alt + '</span>';
                 post.appendChild(alt_div);
 
                 link.setAttribute('alte', 1);
