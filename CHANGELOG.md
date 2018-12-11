@@ -1,3 +1,11 @@
+## 1.0.5
+
+- Support browser back and forward action.
+- Hide btn when in Explore or others' homepage.
+- New flag `show_alt` to hide post description by default.
+
+Because the changes of Instagram, the img-alt of first 12 posts is something like `Image may contain: ***` or `No automatic alt text available.` now, not description of post any longer. I set a new flag called `show_alt` and hide description by default. You can still show the img-alt by setting `show_alt` to 1.
+
 ## 1.0.4
 
 - No need to reflesh the page in your personal page.
