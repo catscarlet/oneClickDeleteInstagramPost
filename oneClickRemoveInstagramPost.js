@@ -131,32 +131,13 @@
     }
 
     function historyOnpushstate() {
-        let match_regex = /https:\/\/www.instagram.com\/([^\/]+)\/$/;
-        let href = location.href;
-
-
-        let array1 = match_regex.exec(href);
-        if (array1 !== null) {
-            if (array1[1] == 'explore') {
-
-                temp_lock = 1;
-            } else {
-                temp_lock = 0;
-            }
-
-            pending();
-        }
+        pending();
     }
 
     function pending() {
         if (!article.length || !article[0].children[0].childElementCount || !article[0].children[0].children[0].childElementCount) {
             setTimeout(pending, 500);
         } else {
-            if (document.getElementsByClassName('fx7hk').length && document.getElementsByClassName('fx7hk')[0].childElementCount == 2) {
-                temp_lock = 1;
-            } else {
-                temp_lock = 0;
-            }
             ob();
             getPost();
         }
@@ -178,6 +159,7 @@
 
     function getPost() {
         let articles = document.getElementsByTagName('article')[0].children[0].children[0];
+        let own_it = pageOwnerCheck();
 
         for (let articlesline of articles.children) {
             for (let post of articlesline.children) {
@@ -209,14 +191,11 @@
                     deleteByMediaId(media_id, btn, post);
                 };
 
-                if (temp_lock) {
-                    //Skip btn append.
-                } else if (safe_lock) {
-                    btn.disabled = true;
-                    btn.title = 'Safe_lock is ON! You need to edit the script and change the "safe_lock" to 0 in order to delete your post without confirm.';
-                    btn_div.appendChild(btn);
-                    post.appendChild(btn_div);
-                } else {
+                if (own_it) {
+                    if (safe_lock) {
+                        btn.disabled = true;
+                        btn.title = 'Safe_lock is ON! You need to edit the script and change the "safe_lock" to 0 in order to delete your post without confirm.';
+                    }
                     btn_div.appendChild(btn);
                     post.appendChild(btn_div);
                 }
@@ -285,4 +264,23 @@
             }
         };
     }
+
+    function pageOwnerCheck() {
+        let not_own_it = 0;
+        let match_regex = /https:\/\/www.instagram.com\/([^\/]+)\/$/;
+        let href = location.href;
+
+        let array1 = match_regex.exec(href);
+        if (array1 !== null) {
+            if (array1[1] == 'explore') {
+                not_own_it++;
+            }
+        }
+
+        if (document.getElementsByClassName('fx7hk').length && document.getElementsByClassName('fx7hk')[0].childElementCount == 2) {
+            not_own_it += 2;
+        }
+
+        return !not_own_it;
+    };
 })();
