@@ -182,15 +182,19 @@
                 let alt = img.alt;
 
                 let btn_div = document.createElement('div');
+                btn_div.style.height  = '2rem';
                 let media_id = getMediaIdByUrlSegment(urlSegment);
 
                 let btn = document.createElement('button');
                 btn.innerHTML = 'delete this';
-                btn.style.margin = '0.5em';
                 btn.style.backgroundColor  = 'darksalmon';
                 btn.onclick = function() {
                     deleteByMediaId(media_id, btn, post);
                 };
+
+                post.classList.add('oneClickDeleteInstagramPost_post');
+
+                btn_div.className = 'btn_div';
 
                 if (own_it) {
                     if (safe_lock) {
@@ -202,12 +206,17 @@
                 }
 
                 let alt_div = document.createElement('div');
+                alt_div.className = 'alt_div';
+                alt_div.style.height  = '1rem';
                 let alt_div_style = 'word-break: break-word;';
                 if (!show_alt) {
                     alt_div_style += 'display: none;';
                 }
                 alt_div.innerHTML = '<span style="' + alt_div_style + '">' + alt + '</span>';
                 post.appendChild(alt_div);
+
+                let post_style = 'height: calc(' + post.offsetHeight + 'px - 3rem); margin-bottom: 3rem;';
+                post.style = post_style;
 
                 link.setAttribute('alte', 1);
             }
