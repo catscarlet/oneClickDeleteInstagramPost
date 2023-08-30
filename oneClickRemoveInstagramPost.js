@@ -25,71 +25,20 @@
     let safe_lock = 1; //Set this to 0 to unlock the 'Delete this' button.
     let show_alt = 0; //Hide alt by default. Set this to 1 to show alt of images.
 
-    let rmap = {
-        '0': 'Q',
-        '1': 'R',
-        '2': 'S',
-        '3': 'T',
-        '4': 'U',
-        '5': 'V',
-        '6': 'W',
-        '7': 'X',
-        '8': 'Y',
-        '9': 'Z',
-        '-': '$',
-        'A': '0',
-        'B': '1',
-        'C': '2',
-        'D': '3',
-        'E': '4',
-        'F': '5',
-        'G': '6',
-        'H': '7',
-        'I': '8',
-        'J': '9',
-        'K': 'a',
-        'L': 'b',
-        'M': 'c',
-        'N': 'd',
-        'O': 'e',
-        'P': 'f',
-        'Q': 'g',
-        'R': 'h',
-        'S': 'i',
-        'T': 'j',
-        'U': 'k',
-        'V': 'l',
-        'W': 'm',
-        'X': 'n',
-        'Y': 'o',
-        'Z': 'p',
-        'a': 'q',
-        'b': 'r',
-        'c': 's',
-        'd': 't',
-        'e': 'u',
-        'f': 'v',
-        'g': 'w',
-        'h': 'x',
-        'i': 'y',
-        'j': 'z',
-        'k': 'A',
-        'l': 'B',
-        'm': 'C',
-        'n': 'D',
-        'o': 'E',
-        'p': 'F',
-        'q': 'G',
-        'r': 'H',
-        's': 'I',
-        't': 'J',
-        'u': 'K',
-        'v': 'L',
-        'w': 'M',
-        'x': 'N',
-        'y': 'O',
-        'z': 'P',
-        '_': '_',
+    const InstagramConvert = {
+        charset: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_',
+        decode: url => {
+            let result = BigInt(0);
+            let power = BigInt(1);
+
+            for (let i = url.length - 1; i >= 0; i--) {
+                const char = url[i];
+                const index = InstagramConvert.charset.indexOf(char);
+                result += BigInt(index) * power;
+                power *= BigInt(64);
+            }
+            return result.toString();
+        },
     };
 
     let article = document.getElementsByTagName('article');
@@ -234,15 +183,9 @@
     }
 
     function getMediaIdByUrlSegment(urlSegment) {
-        let id = '';
-        for (let i in urlSegment) {
-            let char = urlSegment[i];
-            let value = rmap[char];
-            id += value;
-        }
+        let id = InstagramConvert.decode('CxFWqJduEkk');
 
-        let media_id = (new BigNumber(id, 64)).toString(10);
-        return media_id;
+        return id;
     }
 
     function deleteByMediaId(media_id, btn, post) {
@@ -251,12 +194,12 @@
         btn.onclick = false;
         btn.disabled = true;
 
-        let url = 'https://www.instagram.com/create/' + media_id + '/delete/';
+        let url = 'https://www.instagram.com/api/v1/web/create/' + media_id + '/delete/';
 
         let xmlhttp = new XMLHttpRequest();
         xmlhttp.open('POST', url, true);
-        xmlhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-        xmlhttp.setRequestHeader('x-csrftoken', window._sharedData.config.csrf_token);
+        xmlhttp.setRequestHeader('X-CSRFToken', window._sharedData.config.csrf_token);
+        xmlhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
         xmlhttp.send(null);
 
         xmlhttp.onreadystatechange = function() {
