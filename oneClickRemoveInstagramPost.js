@@ -98,7 +98,7 @@
 
         let observerOptions = {
             childList: true,
-            attributes: true,
+            attributes: false,
             subtree: true,
         };
 
