@@ -1,3 +1,10 @@
+## 1.0.6
+
+Sorry I just gave up Facebook/Meta stuff so there was not a single update in recent years.
+
+- Support the new API of Instagram.
+- Support the new layout of Instagram.
+
 ## 1.0.5
 
 - Support browser back and forward action.

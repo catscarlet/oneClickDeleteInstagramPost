@@ -42,10 +42,10 @@ This project is not responsible for any data lost.
 
 - ~~You need to reflesh the page in your personal page in order to active this script.~~ (Fixed in 1.0.4)
 - ~~Some personal page may have visual issues. I don't know how to get it or fix it yet.~~ (Fixed in 1.0.1)
-- The img_alt of first 12 posts is something like `Image may contain: ***` or `No automatic alt text available.` now, not description if post any longer.
-- The description of video post can't get shown.
-- After you delete a post, if you scroll the page far enough and scroll back, the deleted post will be back on your page, but it will be unaccessable.
-- ~~Even if you enter a personal page which doesn't belong to you, the delete button and description are still shown, of course the delete function won't be functional.~~ (Fixed in 1.0.5)
+- The img_alt of first 12 posts is something like `Image may contain: ***` or `No automatic alt text available.` now, not description if post any longer. (No desire to investigate)
+- The description of video post can't get shown. (No desire to investigate)
+- After you delete a post, if you scroll the page far enough and scroll back, the deleted post will be back on your page, but it will be unaccessable. (No desire to investigate)
+- Even if you enter a personal page which doesn't belong to you, the delete button and description are still shown, of course the delete function won't be functional. ~~(Fixed in 1.0.5)~~ (Still broken and no desire to investigate)
 
 ## License
 
