@@ -51,6 +51,11 @@
 
 MIT
 
+## Additional Credits
+
+- [notslang/instagram-id-to-url-segment](https://github.com/notslang/instagram-id-to-url-segment) Old API Url to ID Convert
+- [dev-coco/Instagram-Convert-Url](https://github.com/dev-coco/Instagram-Convert-Url) New API Url to ID Convert
+
 ## Source Code
 
 <https://github.com/catscarlet/oneClickDeleteInstagramPost>
