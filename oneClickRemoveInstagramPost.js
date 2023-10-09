@@ -10,7 +10,7 @@
 // @description:ja      Instagramの個人ページの投稿に[削除]ボタンを追加してください。 確認なしで投稿を直接削除します。
 // @description:zh-CN   在 Instagram 的个人页面的图片上添加 [Delete] 按钮，点击直接删除图片，不再有确认提示框
 // @description:zh-TW   在 Instagram 的個人頁面的圖片上添加 [Delete] 按鈕，點擊直接刪除图片，不再有確認提示框
-// @version             1.0.6
+// @version             1.1.0
 // @author              catscarlet
 // @license             MIT License
 // @match               *://www.instagram.com/*
@@ -183,7 +183,7 @@
     }
 
     function getMediaIdByUrlSegment(urlSegment) {
-        let id = InstagramConvert.decode('CxFWqJduEkk');
+        let id = InstagramConvert.decode(urlSegment);
 
         return id;
     }
