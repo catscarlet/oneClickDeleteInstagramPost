@@ -1,5 +1,7 @@
 # oneClickDeleteInstagramPost
 
+**Notice: This script may no longer work due to the changes of Instagram.**
+
 This is a userscript for deleting your Instagram posts.
 
 Now you can delete your posts on PC, without Yes/No Confirm. Deleting with free and quick.

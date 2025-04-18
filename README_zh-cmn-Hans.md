@@ -1,5 +1,7 @@
 # oneClickDeleteInstagramPost 一键删除Instagram帖子
 
+**注意：由于 Instagram 的更改，此脚本可能已失效**
+
 这是一个用于快速删除 Instagram 帖子的 用户脚本。
 
 用户可以在 PC 端的个人页面直接删除自己的 Post，并且没有 Yes/No 的确认提示框。可以非常快速且直接了当的进行删除。

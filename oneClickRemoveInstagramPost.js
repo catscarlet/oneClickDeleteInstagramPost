@@ -10,7 +10,7 @@
 // @description:ja      Instagramの個人ページの投稿に[削除]ボタンを追加してください。 確認なしで投稿を直接削除します。
 // @description:zh-CN   在 Instagram 的个人页面的图片上添加 [Delete] 按钮，点击直接删除图片，不再有确认提示框
 // @description:zh-TW   在 Instagram 的個人頁面的圖片上添加 [Delete] 按鈕，點擊直接刪除图片，不再有確認提示框
-// @version             1.1.0
+// @version             1.1.1
 // @author              catscarlet
 // @license             MIT License
 // @match               *://www.instagram.com/*
@@ -41,7 +41,6 @@
         },
     };
 
-    let article = document.getElementsByTagName('article');
     let old_path = '';
     let new_path = '';
     let temp_lock = 0;
@@ -85,7 +84,8 @@
     }
 
     function pending() {
-        if (!article.length || !article[0].children[0].childElementCount || !article[0].children[0].children[0].childElementCount) {
+        let article = document.querySelectorAll('.xg7h5cd.x1n2onr6');
+        if (!article.length) {
             setTimeout(pending, 500);
         } else {
             ob();
@@ -94,7 +94,7 @@
     }
 
     function ob() {
-        let articles = document.getElementsByTagName('article')[0].children[0].children[0];
+        let articles = document.querySelector('.xg7h5cd.x1n2onr6').children[0].children[0];
 
         let observerOptions = {
             childList: true,
@@ -108,7 +108,7 @@
     }
 
     function getPost() {
-        let articles = document.getElementsByTagName('article')[0].children[0].children[0];
+        let articles = document.querySelector('.xg7h5cd.x1n2onr6').children[0].children[0];
         let own_it = pageOwnerCheck();
 
         for (let articlesline of articles.children) {
@@ -135,7 +135,7 @@
                 let media_id = getMediaIdByUrlSegment(urlSegment);
 
                 let btn = document.createElement('button');
-                btn.innerHTML = 'delete this';
+                btn.innerHTML = 'delete this: ' + media_id;
                 btn.style.backgroundColor  = 'darksalmon';
                 btn.onclick = function() {
                     deleteByMediaId(media_id, btn, post);
@@ -173,7 +173,7 @@
     };
 
     function GetUrlSegmentByUrl(url) {
-        let regexp = /https:\/\/www.instagram.com\/p\/(\S+)\/(\?taken-by=\S+)?/;
+        let regexp = /https:\/\/www.instagram.com\/(\S+)\/p\/(\?taken-by=\S+)?/;
         let result = url.match(regexp);
         if (result) {
             return result[1];
